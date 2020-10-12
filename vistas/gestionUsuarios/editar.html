@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>editar</title>
+ <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="../css/overwrite.css">
+  <link href="../css/animate.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet" />
+ <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/parallax.min.js"></script>
+   <script src="../js/jqBootstrapValidation.js"></script>
+  <script src="../js/wow.min.js"></script>
+  <script src="../js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+ <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="../css/sweetalert.css" />
+  <script src="../js/functions.js"></script>
+ 
+<script>
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+
+
+
+
+
+</head>
+<body>
+<br><br>
+
+<br>
+	<div class="container" id="fondo">
+		<div class="col-md-4" id="fondo">
+			<h2 class="text-center text-danger ">DATOS DE LA PERSONA</h2>
+			<div class="row">
+				<form role="form" action="modificar.html" method="post" id="fondo">
+					<div class="col-md-6">
+						<label>C.I.:</label> <input type="text" class="form-control"
+							name="ci" value="$usuario.ci">
+					</div>
+					<div class="col-md-6">
+						<label>Fecha de Nacimiento:</label> <input type="date"
+							class="form-control" name="fecha" value="$usuario.fecha">
+					</div>
+					<div class="col-md-6">
+						<label>Nombre(s):</label> <input type="text" class="form-control"
+							name="nombres" value="$usuario.nombres">
+					</div>
+					<div class="col-md-6">
+						<label>Apellidos(s):</label> <input type="text"
+						
+							class="form-control" name="apellidos" value="$usuario.apellidos">
+					</div>
+					<div class="col-xs-12">
+						<label for="ex1">SEXO:</label> <select class="form-control"
+							id="sel1" name="sexo">
+							<option value="true" selected>MASCULINO</option>
+							<option value="false">FEMENINO</option>
+						</select>
+					</div>
+			</div>
+			<br>
+		   <br>
+<div class="col-md-12 text-center">
+		 <a id="boton" class="btn btn-danger"
+						onclick="swal({   title: 'Esta Seguro que quiere Salir?',   text: 'Su informacion no ha sido registrada',   type: 'warning',   showCancelButton: true, cancelButtonText: 'Cancelar',   confirmButtonColor: '#DD6B55',   confirmButtonText: 'Salir!',   closeOnConfirm: false }, function(){ window.location.href='listaUsuario.html' });">Regresar</a>
+
+                        <button class="btn btn-danger btn-lg" action="submit" >Actualizar</button>
+            </div>
+				 
+				</div>
+
+		    <div class="col-md-6" id="fondo">
+  <h2 class="text-center text-danger ">DATOS DEL USUARIO</h2>
+   <form role="form" action="modificar.html">
+   <input type="hidden" name="id_us" value="$usuario.id_us">
+    <div class="form-group" >
+     <div class="row">
+  <div class="col-md-6">
+    <label >USUARIO:</label>
+    <input type="text" class="form-control" name="login" value="$usuario.login" placeholder="">
+  </div>
+  <div class="col-md-6">
+    <label >CONTRASEÑA:</label>
+    <!--PASSWORD--><input name="password" type="text" value="$usuario.password" class="form-control" onfocus="this.value=''" /><!--END PASSWORD-->
+  </div>
+   <div class="col-md-12">
+  <label for="ex1">ROL:</label>
+   <select class="form-control" id="sel1" name="id_rol">
+   #foreach($r in $roles)
+    <option value="$r.id_rol" #if($r.id_rol==$usuario.id_rol)selected#end>$r.nombre</option>
+    #end
+   </select>
+</div>
+
+
+</div>
+      </div>
+  </form>
+</div>
+	</body>
+</html>

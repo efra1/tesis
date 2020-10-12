@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>ListaCosechadores</title>
+
+  <!-- Bootstrap -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="../stylesheet" href="css/font-awesome.min.css">
+  <link rel="../stylesheet" href="css/animate.css">
+  <link rel="../stylesheet" href="css/overwrite.css">
+  <link href="../css/animate.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet" />
+  
+  
+ <script src="../js/jquery-2.1.1.min.js"></script>
+  
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/parallax.min.js"></script>
+  <script src="../js/wow.min.js"></script>
+  <script src="../js/jquery.easing.min.js"></script>
+  <script type="../text/javascript" src="../js/fliplightbox.min.js"></script>
+  <script src="../js/functions.js"></script>
+  <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../scripts/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../scripts/dataTables.bootstrap.js"></script>
+	<script type="text/javascript" src="../scripts/tableConfig.js"></script>
+  
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".datatables").dataTable(dataTableParams);
+});
+</script>
+<style type="text/css">
+#editar{
+width: 20%;
+	height: 30px;
+}
+</style>
+</head>
+
+<body>
+
+		
+	
+
+	
+	<div >
+	<br><br>
+	
+		<h1 class="titulo text-primary text-center">Registro de Cosechadores</h1>
+		
+		<table class="table table-center table-striped table-bordered datatables" id="tablag">
+			<thead>
+				<tr>
+					
+					<th class="text-center">Codigo de usuario</th>
+					<th class="text-center">Nombres</th>
+					<th class="text-center">Apellidos</th>
+					<th class="text-center">C.I</th>
+					<th class="text-center" class="col-md-1">Estado</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				#foreach($l in $lista)
+				<tr>
+					<td class="text-center">$l.id_per</td>
+					<td class="text-center">$l.nombres</td>
+					<td class="text-center">$l.apellidos</td>
+					<td class="text-center">$l.ci</td>
+					<td>#if($l.activou)HABILITADO #else INHABILITADO#end</td>
+					
+				</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<div id="contentModal"> 
+	</div>
+	
+	<script>
+
+	
+	function GetNuevo(){
+	 	$("#contentModal").load("getNuevo.html", function(){
+	 		$("#addModal").modal("show");
+	 		console.log("Cargado modal")
+	 	})
+	}
+	
+	function GuardarUsuario(){
+		var datos = $("#addForm").serialize();
+		console.log(datos);
+		$.ajax({
+			url:"guardar.html",
+			type:"post",
+			data:datos,
+			success:function(res){
+				console.log("respuesta "+res);
+				$("#addModal").modal("hide");
+			}
+		})
+	}
+	
+	
+	</script>
+</body>
+</html>

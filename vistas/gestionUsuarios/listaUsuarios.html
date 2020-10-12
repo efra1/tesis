@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>ListaUsuarios</title>
+
+  <!-- Bootstrap -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="../stylesheet" href="css/font-awesome.min.css">
+  <link rel="../stylesheet" href="css/animate.css">
+  <link rel="../stylesheet" href="css/overwrite.css">
+  <link href="../css/animate.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet" />
+  <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/sweetalert.css" />
+    
+ <script src="../js/jquery-2.1.1.min.js"></script>
+  
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/parallax.min.js"></script>
+  <script src="../js/wow.min.js"></script>
+  <script src="../js/jquery.easing.min.js"></script>
+  <script type="../text/javascript" src="../js/fliplightbox.min.js"></script>
+  <script src="../js/functions.js"></script>
+  <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../scripts/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../scripts/dataTables.bootstrap.js"></script>
+	<script type="text/javascript" src="../scripts/tableConfig.js"></script>
+  
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".datatables").dataTable(dataTableParams);
+});
+</script>
+<style type="text/css">
+#editar{
+width: 20%;
+	height: 30px;
+}
+</style>
+</head>
+
+<body>
+	<br><br>
+	
+	<a href="nuevo.html"
+		class="btn btn-primary btn-lg btn-rounded">Registrar Nuevo usuario</a>
+		
+	
+
+	
+	<div >
+		<h1 class="titulo text-primary text-center">Lista de Usuarios</h1>
+	<a href="../usuario/listaUsuario.html" onclick="Menus(this)">Usuarios Activos |</a><a href="../usuario/listaInhabilitado.html" onclick="Menus(this)"> Usuarios No Activos</a>
+		
+		<table class="table table-center table-striped table-bordered datatables" id="tablag">
+			<thead>
+				<tr>
+					<th class="text-center">Nro</th>
+					<th class="text-center">Nombres</th>
+					<th class="text-center">Apellidos</th>
+					<th class="text-center">Fecha de Nacimiento</th>
+					<th class="text-center">Rol</th>
+					<th class="text-center" class="col-md-1">Acciones</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				#foreach($i in $usuario)
+				<tr>
+					<td class="text-center">$i.id_us</td>
+					<td class="text-center">$i.nombres</td>
+					<td class="text-center">$i.apellidos</td>
+					<td class="text-center">$!{i.f_nac}</td>
+					<td class="text-center col-md-2">${i.rol}</td>
+					<td class="text-center col-md-2"><a algin="center" href="editar.html?id_us=$i.id_us"><img class="img-center" src="../img/editar.jpg" id="editar" /></a><a>#if($i.estado)<img class="img-center" src="../img/habilitado.jpg" id="editar" /> #else <img class="img-center" src="../img/inhabilitado.png" id="editar" />#end</a><a class="align-center" onclick="swal({   title: 'Esta Seguro de eliminar este Usuario?',   text: 'El usuario ya no se mostrara',   type: 'warning',   showCancelButton: true, cancelButtonText: 'Cancelar',   confirmButtonColor: '#DD6B55',   confirmButtonText: 'Eliminar!',   closeOnConfirm: false }, function(){ window.location.href='inabilitar.html?id_us=$i.id_us' });"> <img src="../img/eliminar2.jpg" id="editar" /></a></td>
+				</tr> 
+				#end
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<div id="contentModal"> 
+	</div>
+	
+	<script>
+
+	
+	function GetNuevo(){
+	 	$("#contentModal").load("getNuevo.html", function(){
+	 		$("#addModal").modal("show");
+	 		console.log("Cargado modal")
+	 	})
+	}
+	
+	function GuardarUsuario(){
+		var datos = $("#addForm").serialize();
+		console.log(datos);
+		$.ajax({
+			url:"guardar.html",
+			type:"post",
+			data:datos,
+			success:function(res){
+				console.log("respuesta "+res);
+				$("#addModal").modal("hide");
+			}
+		})
+	}
+	
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>nuevaHumedad</title>
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="../stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="../css/overwrite.css">
+  <link href="../css/animate.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet" />
+ <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/parallax.min.js"></script>
+  <script src="../js/wow.min.js"></script>
+  <script src="../js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+  <script src="../js/functions.js"></script>
+   <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/sweetalert.css" />
+  
+<script type="text/javascript">
+	$(".datatables").dataTable();
+</script>
+<style type="text/css">
+</style>
+
+</head>
+
+<body>
+<br><br>
+	<div class="container" id="formulario">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-3" id="fondo">
+				<form action="modificar.html">
+
+					<h2 class="text-center text-primary">Editar Registro de Humedad</h2>
+
+					<br>
+					<input type="hidden" name="id_reg" value="$humedad.id_reg">
+					<div class="form-group  has-success">
+						<label for="nombre">Fecha:</label>
+						<input type="date" name="fecha_dato" value="$humedad.fecha" class="form-control"> 
+					</div>
+					<div class="form-group  has-success">
+						<label for="nombre">Humedad del suelo (%):</label> <input type="text"
+							name="humedad" value="$humedad.humedad" class="form-control"></input>
+					</div>
+					
+					<div class="col-md-12 text-center">
+		 <a id="boton" class="btn btn-danger"
+						onclick="swal({   title: 'Esta Seguro que quiere Salir?',   text: 'Su informacion no ha sido registrada',   type: 'warning',   showCancelButton: true, cancelButtonText: 'Cancelar',   confirmButtonColor: '#DD6B55',   confirmButtonText: 'Salir!',   closeOnConfirm: false }, function(){ window.location.href='lista.html' });">Regresar</a>
+
+                        <button class="btn btn-danger btn-lg" >Guardar</button>
+            </div>
+		
+			</form>
+
+		</div>
+	</div>
+
+
+</body>
+
+
+
+</html>
